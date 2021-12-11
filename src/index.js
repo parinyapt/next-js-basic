@@ -9,10 +9,10 @@ function HomePage({ data }) {
     <Navbar />
     <Container maxWidth="lg">
       <div style={{marginTop: '1em'}}>
-        <Typography variant="h4" gutterBottom>
-          Around the World!!
+        <Typography variant="h4" color="primary" gutterBottom>
+          Around the world
         </Typography>
-        <Grid container spacing={3}>
+        <Grid container spacing={1}>
           {data.map((attraction) => (
             <Grid item xs={12} lg={4} key={attraction.id}>
               <AttractionCard attraction={attraction} />
@@ -20,20 +20,20 @@ function HomePage({ data }) {
           ))}
         </Grid>
       </div>
-    </Container>
-    </div>
+    </Container >
+  </div>
 }
 
 // This function gets called at build time
 export async function getStaticProps() {
-  // Call an external API endpoint to get posts
+  // Call an external API endpoint to get data
   const res = await fetch('https://www.mecallapi.com/api/attractions')
   const data = await res.json()
 
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
+  // By returning { props: { data } }, the HomePage component
+  // will receive `data` as a prop at build time
   return {
-    props: { data }
+    props: { data },
   }
 }
 
